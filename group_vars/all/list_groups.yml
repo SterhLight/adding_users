@@ -1,0 +1,6 @@
+---
+list_groups:
+  - sudo
+  - docker
+  - mail
+

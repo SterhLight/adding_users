@@ -1,0 +1,5 @@
+- name: delete users
+  hosts: all
+  roles:
+    - role: users_del
+      tags: users_del

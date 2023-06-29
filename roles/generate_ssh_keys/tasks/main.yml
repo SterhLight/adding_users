@@ -1,0 +1,8 @@
+---
+- name: Generate an OpenSSH rsa keypair
+  become: true
+  community.crypto.openssh_keypair:
+    owner: "{{ item.key }}"
+    path: "/tmp/{{ item.key }}"
+    size: 2048
+  loop: "{{ data | dict2items }}"

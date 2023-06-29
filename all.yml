@@ -1,0 +1,11 @@
+---
+- name:
+  hosts: localhost
+  roles:
+    - {role: generate_ssh_keys, tags: ["generate_ssh_keys"]}
+
+- name: creat users
+  hosts: all
+  roles:
+    - {role: users_add, tags: ["users_add"]}
+    - {role: authorized_keys_add, tags: ["authorized_keys_add"]}

@@ -1,0 +1,14 @@
+---
+- name: create users
+  become: true
+  ansible.builtin.user:
+    name: "{{ item.key }}"
+    password: "{{ '{{ item.value }}' | password_hash('sha512') }}"
+    append: true
+    groups: "{{ outer_item }}"
+    state: "present"
+    shell: "/bin/bash"
+    system: false
+    create_home: true
+    home: "/home/{{ item.key }}"
+  loop: "{{ data | dict2items }}"

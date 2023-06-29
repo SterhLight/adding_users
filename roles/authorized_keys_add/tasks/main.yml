@@ -1,0 +1,8 @@
+---
+- name: Set authorized keys taken from file
+  become: true
+  ansible.posix.authorized_key:
+    user: "{{ item.key }}"
+    state: present
+    key: "{{ lookup('file', '/tmp/{{ item.key }}.pub') }}"
+  loop: "{{ data | dict2items }}"
